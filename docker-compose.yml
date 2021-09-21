@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgresqlserver
+    image: postgres:13
+    volumes:
+      - ./init_db.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - DB=testdb
+    ports:
+      - '5432:5432'
